@@ -1,0 +1,86 @@
+<div fxLayout="column" class="default-layout-style" fxFill>
+  <dx-scroll-view class="scroll-view">
+    <div fxLayout="row" class="car-details">
+      <div fxLayout="column" fxFlex="100">
+        <div fxLayout="row">
+          <div fxFlex="40" fxLayout="column">
+            <div fxLayout="row" style="margin-bottom: 10px;margin-top: 10px;">
+              <img style="height: 35px; width: 40px; float: left;padding-right: 5px;" src="assets/images/car.svg" />
+              <div style="font-size: larger;font-weight: 700; margin-top: 5px;">{{ carDetail?.model?.name }} {{
+                carDetail?.name }}</div>
+            </div>
+            <div *ngIf="startRideDate" fxLayout="row" style="margin-bottom: 5px;">
+              <img style="height: 30px; width: 40px; float: left;padding-right: 5px;"
+                src="assets/images/calendar.svg" />
+              <div style="font-size: larger;font-weight: 700; margin-top: 4px;">{{
+                convertHelper.toDate(startRideDate.toString()) }}</div>
+            </div>
+          </div>
+          <div fxFlex="60" fxLayout="column">
+            <div fxLayout="row" style="margin-bottom: 10px;margin-top: 10px;">
+              <img style="height: 35px; width: 40px; float: left;padding-right: 5px;"
+                src="assets/images/license-plate.svg" />
+              <div style="font-size: larger;font-weight: 700; margin-top: 5px;">{{ carDetail?.licensePlate }} {{
+                carDetail?.name }}</div>
+            </div>
+            <div *ngIf="startRideDate" fxLayout="row" style="margin-bottom: 5px;">
+              <img style="height: 30px; width: 40px; float: left;padding-right: 5px;" src="assets/images/time.svg" />
+              <div style="font-size: larger;font-weight: 700; margin-top: 4px;"> {{
+                convertHelper.toTime(startRideDate.toString())}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row" *ngIf="!appService.appointmentId">
+      <dx-button class="button-scan" [height]="'100%'" [width]="'100%'" text={{scantext}} type="default"
+        icon="assets/images/qrcode.svg" (onClick)="scanDriverLicence()">
+      </dx-button>
+    </div>
+    <div *ngIf="driversList.length > 0">
+      <div *ngFor="let driver of driversList;let indexOfDriver=index;">
+        <div fxLayout="row" style="  margin-top: 20px;" class="participant-details">
+          <div fxFlex="50" fxLayout="col">
+            <h3> ID: {{ driver?.guestId }}</h3>
+          </div>
+          <div fxLayout="column" fxFlex="25" style="align-self: center">
+            <img *ngIf="driver?.licenceValid === true;" fxLayout="row"
+              style="width: 200px; height: 40px; align-self: center" src="assets/images/verify-green.svg" />
+            <img *ngIf="driver?.licenceValid === false;" fxLayout="row"
+              style="width: 200px; height: 40px; align-self: center" src="assets/images/deny.svg" />
+          </div>
+          <div fxLayout="column" fxFlex="25" style="align-self: center">
+            <img *ngIf="driver?.allowedToEvent === true;" fxLayout="row"
+              style="width: 200px; height: 35px; align-self: center" src="assets/images/calendar-green.svg" />
+            <img *ngIf="driver?.allowedToEvent === false;" fxLayout="row"
+              style="width: 200px; height: 35px; align-self: center" src="assets/images/calendar-red.svg" />
+          </div>
+          <div fxLayout="column" fxFlex="22" style="align-self: center">
+            <dx-button class="scan-logo" type="back" icon="assets/images/qrcode.svg"
+              (onClick)="updateDriver(indexOfDriver)">
+            </dx-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="height: 60px;  " *ngIf="driversList.length > 0 && !appService.appointmentId" fxLayout="row"
+      fxLayoutAlign="center center">
+      <dx-button class="button" style="text-align: center ;margin-top: 20px;" [height]="'100%'" [width]="'100%'"
+        type="default" text="Start" icon="assets/images/start-black.svg" (onClick)="insertAppointment()">
+      </dx-button>
+    </div>
+    <!-- <div *ngIf="appService.appointmentId" fxLayout="row" fxLayoutAlign="center center" style="height: 60px; ">
+      <dx-button class="button-close" style="text-align: center; margin-top: 20px;" [height]="'100%'" [width]="'100%'"
+        text="FAHRT BEENDEN" icon="assets/images/check-flag.svg" (onClick)="closeAppointment()">
+      </dx-button>
+    </div> -->
+    <div *ngIf="appService.appointmentId" fxLayout="row" fxLayoutAlign="center center" style="height: 60px; ">
+      <dx-button class="button" style="text-align: center; margin-top: 20px;" [height]="'100%'" [width]="'100%'"
+        type="default" text="Neue Fahrt starten" (onClick)="goToEventDetail()">
+      </dx-button>
+    </div>
+  </dx-scroll-view>
+</div>
+<dx-toast #toast [type]="'error'" [message]="'Invalid event code'" [displayTime]="3000" position="toastPosition"
+  [width]="'auto'">
+</dx-toast>

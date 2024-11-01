@@ -1,0 +1,31 @@
+<div fxLayout="column" fxFill>
+  <div fxFlex="50px" fxLayout="row" fxLayoutAlign="space-between center">
+    <dx-toolbar class="header-toolbar">
+      <dxi-item location="before" *ngIf="this.appService.showBackButton === true">
+        <dx-button class="returnButtonStyle" stylingMode="text" icon="back" type="default" (onClick)="returnButton()"
+          [hoverStateEnabled]="false">
+        </dx-button>
+      </dxi-item>
+      <dxi-item location="before" *ngIf="this.appService.showBackButton === true">
+        <dx-button class="returnButtonStyle" stylingMode="text" icon="home" type="default" (onClick)="goToHome()"
+          [hoverStateEnabled]="false">
+        </dx-button>
+      </dxi-item>
+      <dxi-item *ngIf="logo" location="center" locateInMenu="auto" menuItemTemplate="menuItem">
+        <img id="logoImg" [src]="logo" />
+        <!-- <h2 class="logo-name">SI-nect</h2> -->
+      </dxi-item>
+      <dxi-item *ngIf="this.appService.showBackButton === true" class="item-style" location="after" locateInMenu="auto"
+        menuItemTemplate="menuItem">
+        <img class="contextMenuHeader" src="assets/images/ContextMenu.svg" />
+      </dxi-item>
+    </dx-toolbar>
+    <dx-context-menu class="settings-context-menu" target=".contextMenuHeader" showEvent="dxclick"
+      [items]="contextMenuItems" [position]="contextMenuPosition">
+    </dx-context-menu>
+  </div>
+  <div class="background-body">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<il-toast #toast></il-toast>

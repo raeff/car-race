@@ -1,0 +1,46 @@
+::ng-deep .car-overview-list-style {
+  margin-top: 20px;
+  min-width: 100%;
+  overflow: hidden !important;
+  .dx-list-slide-menu-wrapper {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 0px;
+    background-color: white;
+  }
+
+  .dx-list-item {
+    border: 0.5px solid darkgrey;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    opacity: 1 !important;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px,
+      rgba(0, 0, 0, 0.05) 0px 7px 5px -3px,
+      rgba(0, 0, 0, 0.02) 0px -3px 0px inset;
+  }
+
+  .dx-list-item:last-of-type {
+    border-bottom: 1px solid darkgrey !important;
+  }
+
+  .dx-list-item:first-of-type {
+    border-top: 0.5px solid darkgrey;
+  }
+  .dx-list-search {
+    border-radius: 5px !important;
+    margin-bottom: 20px;
+    min-width: 100%;
+  }
+}
+
+.button-scan {
+  text-align: left;
+  background-color: #95c11f;
+  border: 1px rgb(0, 0, 0);
+  color: white;
+  border-radius: 5px;
+  width: fit-content;
+  font-family: 'Source Sans Pro', sans-serif;
+  text-align-last: center;
+}

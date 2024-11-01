@@ -1,0 +1,42 @@
+.eventverifier-container {
+  width: 40%;
+  height: 40%;
+  position: relative;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  border-radius: var(--border-radius-small);
+  display: flex;
+  margin: 20px;
+  padding: 20px;
+}
+
+.event-message {
+  color: black;
+  font-weight: 700;
+  font-size: x-large;
+  text-align: -webkit-center;
+  font-family: var(--app-text-police);
+}
+
+::ng-deep .login-button {
+  text-align: center;
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: #fff !important;
+  border-radius: var(--border-radius-medium);
+  margin: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  outline: none;
+  font-family: var(--app-text-police);
+  font-weight: bold;
+  .dx-icon {
+    display: none;
+  }
+}
+.event-code-button {
+  border-radius: var(--border-radius-medium);
+  border-color: 1px solid var(--border-color);
+}

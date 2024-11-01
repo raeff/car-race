@@ -1,0 +1,107 @@
+.event-detail {
+  display: flex;
+  flex-direction: column;
+  margin: 8px;
+}
+
+.car-details {
+  padding: 0px 0px 0px 20px;
+  margin-bottom: 20px;
+
+  border: 1px solid rgb(0, 0, 0);
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+}
+
+.participant-details {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border: 1px solid rgb(0, 0, 0);
+  padding: 0px 0px 0px 20px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+}
+
+.button {
+  text-align: left;
+  background-color: #95c11f;
+  border: 1px rgb(0, 0, 0);
+  color: white;
+  border-radius: 5px;
+  width: fit-content;
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 2px;
+}
+.button-scan {
+  text-align: left;
+  background-color: #95c11f;
+  border: 1px rgb(0, 0, 0);
+  color: white;
+  border-radius: 5px;
+  width: fit-content;
+  font-family: 'Source Sans Pro', sans-serif;
+  text-align-last: center;
+}
+
+.button-close {
+  text-align: left;
+  background-color: #757575;
+  border: 1px rgb(0, 0, 0);
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+  width: fit-content;
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 2px;
+  margin-bottom: 20px;
+}
+.button-start {
+  text-align: left;
+  background-color: #95c11f;
+  border: 1px rgb(0, 0, 0);
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+  width: fit-content;
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 2px;
+  margin-bottom: 20px;
+}
+
+.button-stop {
+  text-align: left;
+  background-color: #858585;
+  border: 1px rgb(0, 0, 0);
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+  width: fit-content;
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 2px;
+  margin-bottom: 20px;
+}
+
+::ng-deep .scroll-view {
+  margin-top: 20px;
+  min-width: 100%;
+  overflow: hidden !important;
+}
+
+::ng-deep .scan-logo .dx-icon {
+  height: 40px;
+  width: 40px;
+}
+
+.dx-button.scan-logo {
+  border-color: #ffffff;
+}
+
+.scan-logo {
+  border: 5px;
+}
+
+h3 {
+  display: block;
+}

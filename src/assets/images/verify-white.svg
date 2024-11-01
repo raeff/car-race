@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="uuid-f1cdaa41-2bb8-4d14-a78d-5992d055d1c7" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <style>
+      .uuid-f9ad49de-53e1-4bff-b096-43decbd9e85c {
+        fill: #ffffff;
+      }
+    </style>
+  </defs>
+  <path class="uuid-f9ad49de-53e1-4bff-b096-43decbd9e85c" d="M200,20C100.75,20,20,100.75,20,200s80.75,180,180,180,180-80.75,180-180S299.25,20,200,20Zm0,320c-77.19,0-140-62.81-140-140S122.81,60,200,60s140,62.81,140,140-62.81,140-140,140Z"/>
+  <polygon class="uuid-f9ad49de-53e1-4bff-b096-43decbd9e85c" points="175 217.51 133.42 175.93 105.14 204.21 175 274.08 294.86 154.2 266.58 125.92 175 217.51"/>
+</svg>

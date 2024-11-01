@@ -1,0 +1,68 @@
+<div fxLayout="column" fxFill [style.filter]="showLoader == true ? 'blur(0.2rem)' : 'blur(0)'">
+    <div class="information-header" fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+            <p style="font-size: larger;"> {{appService.eventDetail.name}}</p>
+        </div>
+        <div>
+            <p style="font-size: larger;">{{appService.eventDetail.startDate}}</p>
+        </div>
+    </div>
+    <div class="check-in-header" fxLayout="row">
+        <div fxFlex="50">
+        </div>
+        <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
+            <p> Anmeldungen: {{appService.participantList.length}} | Check-ins:
+                {{appService.checkedParticipantList.length}}</p>
+        </div>
+    </div>
+    <div class="default-layout-style double-toolbar">
+        <dx-scroll-view>
+            <div class="participant-details" fxLayout="row">
+                <div fxFlex="90" fxLayout="column" fxLayoutAlign="space-between start" style="font-weight: bold;">
+                    <div fxLayout="row">
+                        <div fxLayout="column">
+                            Name: {{appService.eventParticipantDetail.user.firstName}}
+                            {{appService.eventParticipantDetail.user.lastName}}
+                        </div>
+                    </div>
+                    <div fxLayout="row">
+                        <div fxLayout="column">
+                            Gast ID: {{appService.eventParticipantDetail.user.guestId}}
+                        </div>
+                    </div>
+                    <div fxLayout="row">
+                        <div fxLayout="column">
+                            Firma: {{appService.eventParticipantDetail.user.company}}
+                        </div>
+                    </div>
+                </div>
+                <div fxFlex="10" fxLayout="column" fxLayoutAlign="center end">
+                    <div fxLayout="row" class="enter-icon-style"
+                        *ngIf="appService.eventParticipantDetail.checked === true">
+                        <img style="height: 60px; width: 60px;" src="assets/images/verify-green.svg" />
+                        <dx-button class="check-participant" style="margin-left: 10px;"
+                            icon="assets/images/user-minus.svg " [disabled]="disableCheckButton"
+                            (onClick)="setParticipant(false)">
+                        </dx-button>
+                    </div>
+                    <div fxLayout="row" class="enter-icon-style"
+                        *ngIf="appService.eventParticipantDetail.checked === false">
+                        <img style="height: 60px; width: 60px;" src="assets/images/verify-red.svg" />
+                        <dx-button class="check-participant" style="margin-left: 10px;"
+                            icon="assets/images/user-plus.svg " [disabled]="disableCheckButton"
+                            (onClick)="setParticipant(true)">
+                        </dx-button>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row">
+                <dx-button class="button-scan-participant" [height]="'85px'" [width]="'100%'"
+                    text="Weiteren Teilnehmer einchecken" type="default" icon="assets/images/qrcode.svg "
+                    (onClick)="getParicipantScanner()">
+                </dx-button>
+            </div>
+        </dx-scroll-view>
+    </div>
+</div>
+
+<ideenherd-loader *ngIf="showLoader"></ideenherd-loader>

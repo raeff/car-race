@@ -1,0 +1,88 @@
+::ng-deep .button-scan-participant {
+  text-align: left;
+  border: 1px solid var(--border-color) !important;
+  background-color: var(--primary-color) !important;
+  border-radius: var(--border-radius-medium);
+  text-align-last: center;
+  width: fit-content;
+  font-family: var(--app-text-police);
+  .dx-button-text {
+    font-size: large;
+  }
+  .dx-icon {
+    font-size: 24px;
+    float: right;
+    height: 70px;
+    width: 70px;
+  }
+}
+
+::ng-deep .button-alert-message {
+  cursor: default;
+  text-align: left;
+  background-color: var(--secondary-color-light) !important;
+  color: black !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--border-radius-medium);
+  text-align-last: center;
+  width: fit-content;
+  font-family: var(--app-text-police);
+  margin-bottom: 20px;
+  .dx-button-text {
+    font-size: large;
+  }
+  ::ng-deep .dx-icon {
+    font-size: 24px;
+    float: left;
+    height: 65px;
+    width: 50px;
+  }
+}
+
+.calendar-red {
+  height: 25px;
+  width: 40px;
+  background-color: red;
+  -webkit-mask: url(../../../../assets/images/calendar-red.svg) no-repeat center;
+  mask: url(../../../../assets/images/calendar-red.svg) no-repeat center;
+}
+
+::ng-deep .default-layout-style.double-toolbar {
+  .dx-scrollable-native > div.dx-scrollable-wrapper > .dx-scrollable-container {
+    height: calc(100% - var(--nav-toolbar-height) - 40px) !important;
+  }
+}
+::ng-deep .list {
+  margin-top: 30px;
+}
+
+.workshop-update {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-medium);
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  opacity: 1 !important;
+  background-color: var(--secondary-color-light);
+}
+
+.participant-details {
+  border-radius: var(--border-radius-medium);
+  margin: 30px 0px 40px 0px;
+}
+
+::ng-deep .check-participant {
+  margin-left: 10px;
+  .dx-icon {
+    font-size: 24px;
+    height: 50px;
+    width: 50px;
+  }
+}
+::ng-deep .enter-icon-style {
+  .dx-button-mode-contained {
+    border: 0px !important;
+  }
+  .dx-button-content {
+    padding: 0px !important;
+  }
+}

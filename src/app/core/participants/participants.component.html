@@ -1,0 +1,49 @@
+<div fxLayout="column" [style.filter]="showLoader == true ? 'blur(0.2rem)' : 'blur(0)'" fxFill>
+    <div fxLayout="column">
+        <div fxLayout="row" class="information-header" fxLayoutAlign="space-between center">
+            <div fxLayout="column" style="font-size: larger;">{{appService.eventDetail.name}}</div>
+            <div fxLayout="column" style="font-size: larger;">{{appService.eventDetail.startDate}}</div>
+        </div>
+        <div class="check-in-header" fxLayout="row">
+            <div fxFlex="50">
+            </div>
+            <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
+                <p> Anmeldungen: {{appService.participantList.length}} | Check-ins:
+                    {{appService.checkedParticipantList.length}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="default-layout-style double-toolbar" fxLayout="column" fxFill style="margin-top: 40px;">
+        <div>
+            <dx-button class="button-scan-participant" [height]="'85px'" [width]="'100%'" text="Teilnehmer einchecken"
+                type="default" icon="assets/images/qrcode.svg " (onClick)="getParicipantScanner()">
+            </dx-button>
+        </div>
+        <dx-list class="workshop-participant-list" [dataSource]="eventUsersList" [searchEnabled]="true"
+            [pageLoadMode]="'scrollBottom'" [scrollingEnabled]="true" [hoverStateEnabled]="false"
+            (onItemClick)="getParticipantDetail($event)" [searchExpr]="['user.firstName', 'user.lastName', 'user.company']" [searchMode]="'contains'"
+            [allowItemDeleting]="false">
+            <div *dxTemplate="let item of 'item'">
+                <div fxFlex="100" fxLayout="row" class="participant-item" fxLayoutGap="10px">
+                    <div fxFlex="35">{{item.user.firstName}} {{item.user.lastName}}</div>
+                    <div fxFlex="10">{{item.user.guestId}}</div>
+                    <div fxFlex="50">{{item.user.company}}</div>
+                    <div fxFlex="5" *ngIf="item.checked === true">
+                        <img style="height: 30px;width: 30px" src="assets/images/check-green.svg" />
+                    </div>
+                    <div fxFlex="5" *ngIf="item.checked === false">
+                        <img style="height: 30px;width: 30px" src="assets/images/check-gray.svg" />
+                    </div>
+                </div>
+            </div>
+        </dx-list>
+    </div>
+    <div fxLayout="column">
+        <dx-radio-group class="radio" [id]="'filterGroupParticipant'" [items]="checkedParticipantFilter"
+            (onValueChanged)="changeFilter($event)" [value]="checkedParticipantFilter[2]" layout="horizontal">
+        </dx-radio-group>
+    </div>
+</div>
+
+<ideenherd-loader *ngIf="showLoader"></ideenherd-loader>

@@ -1,0 +1,42 @@
+.header-toolbar {
+  background-color: var(--main-toolbar-header-background);
+  height: var(--nav-toolbar-height);
+  padding: 0px 20px;
+}
+.background-body {
+  background: var(--container-background-color);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: calc(100% - var(--nav-toolbar-height));
+}
+.app-ontainer {
+  background-color: #ffffff;
+  height: 70%;
+  padding: 20px;
+  font-family: var(--app-text-police);
+}
+
+.contextMenuHeader {
+  width: 25px;
+  height: 15px;
+}
+.logo {
+  align-items: center;
+  display: flex;
+}
+
+#logoImg {
+  height: 50px;
+  width: 200px;
+}
+.item-style {
+  padding-top: 10px;
+}
+
+::ng-deep .returnButtonStyle {
+  margin-top: 6px;
+  .dx-icon {
+    color: black !important;
+  }
+}

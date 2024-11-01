@@ -1,0 +1,35 @@
+.button-scan-participant {
+  text-align: left;
+  border: 1px solid var(--border-color);
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius-medium);
+  text-align-last: center;
+  width: fit-content;
+  font-family: var(--app-text-police);
+  ::ng-deep .dx-icon {
+    font-size: 24px;
+    float: right;
+    height: 70px;
+    width: 70px;
+  }
+}
+
+::ng-deep .check-participant {
+  .dx-icon {
+    font-size: 24px;
+    height: 50px;
+    width: 50px;
+  }
+}
+.participant-details {
+  border-radius: var(--border-radius-medium);
+}
+
+::ng-deep .enter-icon-style {
+  .dx-button-mode-contained {
+    border: 0px !important;
+  }
+  .dx-button-content {
+    padding: 0px !important;
+  }
+}

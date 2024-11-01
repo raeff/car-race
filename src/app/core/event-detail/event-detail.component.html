@@ -1,0 +1,54 @@
+<div fxLayout="column" class="default-layout-style" [style.filter]="showLoader == true ? 'blur(0.2rem)' : 'blur(0)'"
+  fxFill>
+  <div fxLayout="column" fxLayoutAlign="space-evenly stretch">
+    <div class="details">
+      <div fxLayout="row">
+        <h2>{{ eventDetail?.name }}</h2>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="column" fxFlex="35">
+          <h4>Datum:</h4>
+        </div>
+        <div fxLayout="column" fxFlex="65">{{ eventDetail?.startDate }}</div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="column" fxFlex="35">
+          <h4>Beschreibung:</h4>
+        </div>
+        <div fxLayout="column" fxFlex="65">{{ eventDetail?.info }}</div>
+      </div>
+    </div>
+  </div>
+  <dx-scroll-view class="scroll-view" *ngIf="config">
+    <div fxLayout="column">
+      <div fxLayout="row" class="button-style" *ngIf="config.testDrive">
+        <dx-button style="text-align: center ;" class="button-car" [height]="'50px'" [width]="'100%'" type="default"
+          text="{{ appService.carList.length }} Fahrzeuge" (onClick)="getCarDetail()">
+        </dx-button>
+      </div>
+      <div fxLayout="row" class="button-style" *ngIf="config.testDrive">
+        <dx-button class="button-scan" [height]="'50px'" [width]="'100%'" text="Neue Fahrt starten" type="default"
+          icon="assets/images/qrcode.svg " (onClick)="getScanner(1)">
+        </dx-button>
+      </div>
+      <div fxLayout="row" class="button-style" *ngIf="config.participants">
+        <dx-button style="text-align: center" class="button-car" [height]="'60px'" [width]="'100%'" type="default"
+          text="Teilnehmer {{ appService.checkedParticipantList.length }} / {{ appService.participantList.length }}"
+          (onClick)="openParticipantList()">
+        </dx-button>
+      </div>
+      <div fxLayout="row" class="button-style" *ngIf="config.participants">
+        <dx-button class="button-scan" [height]="'90px'" [width]="'100%'" text="Teilnehmer einchecken" type="default"
+          icon="assets/images/qrcode.svg " (onClick)="getScanner(2)">
+        </dx-button>
+      </div>
+      <div fxLayout="row" class="button-style workshop" *ngIf="config.workshops">
+        <dx-button class="button-workshop" [height]="'85px'" [width]="'100%'" text="Workshops" type="default"
+          (onClick)="getWorkshops()">
+        </dx-button>
+      </div>
+    </div>
+  </dx-scroll-view>
+</div>
+
+<ideenherd-loader *ngIf="showLoader"></ideenherd-loader>

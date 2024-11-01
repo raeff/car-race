@@ -1,0 +1,15 @@
+<div
+  *ngIf="showSplash"
+  class="app-splash-screen"
+  [ngStyle]="{ opacity: opacityChange, transition: splashTransition }"
+>
+  <img
+    style="align-self: flex-start; position: fixed; margin-top: 5%"
+    src="../../assets/images/ideenherd.png"
+  />
+  <div class="app-splash-content">
+    <div class="drawing" id="loading">
+      <div class="loading-dot"></div>
+    </div>
+  </div>
+</div>

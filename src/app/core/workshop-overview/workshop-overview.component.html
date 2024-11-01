@@ -1,0 +1,47 @@
+<div fxLayout="column" fxFill>
+    <div fxLayout="row" class="information-header" fxLayoutAlign="space-between center">
+        <div fxLayout="column" style="font-size: larger;">{{appService.eventDetail?.name}}</div>
+        <div fxLayout="column" style="font-size: larger;">{{appService.eventDetail?.startDate}}</div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxFill class="default-layout-style">
+        <div fxLayout="column" fxFill class="single-toolbar">
+            <dx-list class="workshop-list" [searchEnabled]="true" [dataSource]="workshopList"
+                [pageLoadMode]="'scrollBottom'" [scrollingEnabled]="true" [hoverStateEnabled]="false"
+                [searchExpr]="'name'" (onItemClick)="getWorkshopParticipantOverview($event)" [searchMode]="'contains'"
+                [allowItemDeleting]="false">
+                <div *dxTemplate="let workshop of 'item'">
+                    <div fxLayoutAlign="space-between center"
+                        [ngClass]="{'workshop-list-item-future': workshop.checked === true,'workshop-list-item-taken': workshop.checked === false}">
+                        <div fxFlex="90" fxLayout="column" fxLayoutAlign="space-around stretch" class="workshop-item">
+                            <div fxLayout="row">
+                                <div fxLayout="column" fxFlex="35"> Workshop: </div>
+                                <div fxLayout="column" fxFlex="65"> {{workshop.name}}</div>
+                            </div>
+                            <div fxLayout="row">
+                                <div fxLayout="column" fxFlex="35">Datum / Uhrzeit: </div>
+                                <div fxLayout="column" fxFlex="65">
+                                    {{convertHelper.toDate(workshop.startDate?.toString()) }} /
+                                    {{convertHelper.toTime(workshop.startDate?.toString()) }} -
+                                    {{convertHelper.toTime(workshop.endDate?.toString()) }} Uhr
+                                </div>
+                            </div>
+                        </div>
+                        <div fxLayout="column" fxLayoutAlign="space-around center">
+                            <div *ngIf="workshop?.state === true" fxLayout="row">
+                                <img style="height: 30px;width: 30px" src="assets/images/calendar-green.svg" />
+                            </div>
+                            <div *ngIf="workshop?.state === false" fxLayout="row">
+                                <img style="height: 30px;width: 30px" src="assets/images/calendar-red.svg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </dx-list>
+        </div>
+        <div fxLayout="column">
+            <dx-radio-group class="radio" [id]="'filterGroupWorkshop'" [items]="checkedParticipantFilter"
+                (onValueChanged)="changeFilter($event)" [value]="checkedParticipantFilter[2]" layout="horizontal">
+            </dx-radio-group>
+        </div>
+    </div>
+</div>

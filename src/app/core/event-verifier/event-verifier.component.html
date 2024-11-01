@@ -1,0 +1,16 @@
+<div class="orderDetailStyle" *ngIf="!showSplash; else elseBlock" fxLayout="column" fxLayoutAlign="center center"
+  style="padding: 8px" fxLayoutGap="20px" fxFill>
+  <div fxLayout="row"> <span class="event-message">Veranstaltungscode</span></div>
+  <div fxLayout="row">
+    <dx-text-box id="txtCode" class="event-code-button" [(value)]="eventCode" placeholder="Code" width="250px" height="60px">
+    </dx-text-box>
+  </div>
+  <div fxLayout="row">
+    <dx-button stylingMode="contained" text="LOGIN" class="login-button" width="250px" height="60px" type="default"
+      icon="assets/images/verify-white.svg" (onClick)="getEventDetail()"></dx-button>
+  </div>
+</div>
+<ng-template #elseBlock>
+  <ideenherd-splash-screen></ideenherd-splash-screen>
+</ng-template>
+

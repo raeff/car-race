@@ -1,0 +1,124 @@
+<div fxLayout="column" fxFill [style.filter]="showLoader == true ? 'blur(0.2rem)' : 'blur(0)'">
+    <div class="information-header-detail" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxFlex="25" fxLayout="column">
+            <div fxLayout="row">
+                Workshop :
+            </div>
+            <div fxLayout="row">
+                Datum / Uhrzeit :
+            </div>
+        </div>
+        <div fxFlex="65" fxLayout="column">
+            <div fxLayout="row">
+                {{appService.workshopDetail?.name}}
+            </div>
+            <div fxLayout="row">
+                {{convertHelper.toDate(appService.workshopDetail.startDate?.toString()) }} /
+                {{convertHelper.toTime(appService.workshopDetail.startDate?.toString()) }} -
+                {{convertHelper.toTime(appService.workshopDetail.endDate?.toString()) }} Uhr
+            </div>
+        </div>
+        <div fxFlex="10" fxLayout="column" fxLayoutAlign="center end">
+            <div fxLayout="row">
+                <img style="height: 30px; width: 40px;" src="assets/images/calendar-green.svg" />
+            </div>
+        </div>
+    </div>
+    <div class="check-in-header" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxFlex="50">
+            <p> Plätze gesamt: {{appService.workshopDetail?.maxParticipant}} ({{appService.workshopAvailablePlaces }})
+            </p>
+        </div>
+        <div fxFlex="50" fxLayoutAlign="end center">
+            <p> Anmeldungen: {{appService.workshopDetailParticipants?.inscriptions}} |
+                Check-ins: {{appService.workshopDetailParticipants?.checkIns}}</p>
+        </div>
+    </div>
+    <div class="default-layout-style double-toolbar" fxLayout="column">
+        <dx-scroll-view>
+
+            <div class="participant-details" fxLayout="row" fxLayoutAlign="space-between center">
+                <div fxFlex="25" fxLayout="column" style="font-weight: bold;">
+                    <div fxLayout="row"> Name: </div>
+                    <div fxLayout="row"> Gast ID: </div>
+                    <div fxLayout="row"> Firma: </div>
+                </div>
+                <div fxLayout="column" fxFlex="55">
+                    <div fxLayout="row">
+                        {{appService.currentUserWorkshopDetail?.user.firstName}}
+                        {{appService.currentUserWorkshopDetail?.user.lastName}}
+                    </div>
+                    <div fxLayout="row">{{appService.currentUserWorkshopDetail?.user.guestId}}</div>
+                    <div fxLayout="row">{{appService.currentUserWorkshopDetail?.user.company}}</div>
+                </div>
+                <div fxFlex="20" fxLayout="column" fxLayoutAlign="center end">
+                    <div fxLayout="row" class="enter-icon-style"
+                        *ngIf="checkUpdateCheckIn() && appService.currentUserWorkshopDetail.checkOutDate === null">
+                        <img style="height: 60px; width: 50px;" src="assets/images/calendar-green.svg" />
+                        <dx-button class="check-participant" icon="assets/images/user-minus.svg"
+                            [disabled]="disableCheckButton" (onClick)="setWorkshopUser(false)">
+                        </dx-button>
+                    </div>
+                    <div fxLayout="row" class="enter-icon-style"
+                        *ngIf="!checkUpdateCheckIn() || appService.currentUserWorkshopDetail.checkOutDate">
+                        <img style="height: 60px; width: 50px;" src="assets/images/calendar-red.svg" />
+                        <dx-button
+                            *ngIf="(appService.currentUserWorkshopDetail.checkOutDate && !checkPreviousPath()) || (appService.currentUserWorkshopDetail.checkOutDate === null && appService.currentUserWorkshopDetail.checkInDate === null)"
+                            class="check-participant" icon="assets/images/user-plus.svg" [disabled]="disableCheckButton"
+                            (onClick)="setWorkshopUser(true)">
+                        </dx-button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!checkParticipantInscription() && appService.workshopDetail?.maxParticipant == appService.workshopDetailParticipants?.checkIns"
+                fxLayout="row">
+                <dx-button class="button-alert-message" [height]="'85px'" [width]="'100%'"
+                    text="Leider keine Plätze mehr verfügbar" type="default" icon="assets/images/information.svg">
+                </dx-button>
+            </div>
+
+            <dx-button *ngIf="(!checkParticipantInscription() && appService.workshopDetail?.maxParticipant == appService.workshopDetailParticipants?.checkIns)
+                || !checkPreviousPath() || checkUpdateCheckIn()" class="button-scan-participant" [width]="'100%'"
+                [height]="'85px'" text="Weiteren Teilnehmer einchecken" type="default"
+                (onClick)="getParicipantScanner()">
+            </dx-button>
+
+            <dx-button
+                *ngIf="!participantRegisteredForWorkshop() && checkPreviousPath() && appService.workshopDetail?.maxParticipant > appService.workshopDetailParticipants?.checkIns"
+                class="button-scan-participant" [width]="'100%'" [height]="'85px'" text="Als Teilnehmer hinzufügen"
+                type="default" (onClick)="insertParticipant()">
+            </dx-button>
+
+            <div *ngIf="suggestedWorkshopsToBeRemovedData.length > 0 && !participantRegisteredForWorkshop() && checkPreviousPath() && appService.workshopDetail.maxParticipant > appService.workshopDetailParticipants.checkIns"
+                fxLayout="row" style="padding: 8px">
+                <p style=" font-size: x-large;"> Teilnehmer aus anderem Workshop umbuchen:
+                </p>
+            </div>
+
+            <div *ngIf="suggestedWorkshopsToBeRemovedData.length > 0 && !participantRegisteredForWorkshop() && checkPreviousPath() && appService.workshopDetail.maxParticipant > appService.workshopDetailParticipants.checkIns"
+                fxLayout="column" class="list">
+                <dx-list [searchEnabled]="false" [dataSource]="suggestedWorkshopsToBeRemovedData"
+                    [pageLoadMode]="'scrollBottom'" [scrollingEnabled]="true" [hoverStateEnabled]="false"
+                    [allowItemDeleting]="false" (onItemClick)="deleteWorkshopUser($event)">
+                    <div *dxTemplate="let workshop of 'item'" class="workshop-update" fxLayout="column"
+                        fxLayoutAlign="space-between stretch">
+                        <div fxLayout="row">
+                            <div fxLayout="column" fxFlex="35"> Workshop: </div>
+                            <div fxLayout="column" fxFlex="65"> {{workshop.name}}</div>
+                        </div>
+                        <div fxLayout="row">
+                            <div fxLayout="column" fxFlex="35">Datum/Uhrzeit: </div>
+                            <div fxLayout="column" fxFlex="65">
+                                {{convertHelper.toDate(workshop.startDate?.toString()) }} /
+                                {{convertHelper.toTime(workshop.startDate?.toString()) }} -
+                                {{convertHelper.toTime(workshop.endDate?.toString()) }} Uhr
+                            </div>
+                        </div>
+                    </div>
+                </dx-list>
+            </div>
+        </dx-scroll-view>
+    </div>
+</div>
+
+<ideenherd-loader *ngIf="showLoader"></ideenherd-loader>

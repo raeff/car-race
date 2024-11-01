@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="uuid-86e41ae9-df6a-486f-861f-34988f4bfc5b" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <style>
+      .uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd {
+        fill: #000000;
+      }
+    </style>
+  </defs>
+  <path class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" d="M21,21v30h30V21H21Zm24,24H27V27h18v18Z"/>
+  <rect class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" x="33" y="33" width="6" height="6"/>
+  <path class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" d="M99,51V21h-30v12h-6v6h6v12h30Zm-24-24h18v18h-18V27Z"/>
+  <rect class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" x="81" y="33" width="6" height="6"/>
+  <rect class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" x="33" y="81" width="6" height="6"/>
+  <path class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" d="M81,75h-6v6h12v-12h-6v6Z"/>
+  <path class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" d="M21,57v6h12v-6h-12Z"/>
+  <path class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" d="M39,63h-6v6h-12v30h30v-30h-12v-6Zm6,12v18H27v-18h18Z"/>
+  <rect class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" x="39" y="57" width="6" height="6"/>
+  <rect class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" x="57" y="39" width="6" height="12"/>
+  <rect class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" x="69" y="69" width="6" height="6"/>
+  <rect class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" x="69" y="57" width="18" height="6"/>
+  <path class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" d="M93,87h-6v6h6v6h6v-24h-6v12Z"/>
+  <rect class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" x="75" y="87" width="6" height="12"/>
+  <rect class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" x="63" y="87" width="6" height="6"/>
+  <rect class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" x="57" y="93" width="6" height="6"/>
+  <path class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" d="M57,87h6v-6h6v-6h-12v12Z"/>
+  <polygon class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" points="99 69 99 57 93 57 93 63 87 63 87 69 99 69"/>
+  <path class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" d="M57,21v12h6v-12h-6Z"/>
+  <rect class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" x="51" y="51" width="6" height="6"/>
+  <path class="uuid-d6b6d16e-b7fc-4f8a-9bbb-ad35d82c98dd" d="M51,63v6h18v-6h-6v-6h-6v6h-6Z"/>
+</svg>

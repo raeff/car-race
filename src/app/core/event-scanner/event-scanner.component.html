@@ -1,0 +1,22 @@
+<div [style.filter]="appService.scannerProcessLoader == true ? 'blur(0.2rem)' : 'blur(0)'">
+  <dx-scroll-view>
+    <div class="background-body" style="padding: 8px" fxFlex="100" fxLayout="column" fxLayoutAlign="center center"
+      fxLayoutGap="8PX" fxFill>
+      <div fxLayout="row">
+        <div fxFlex="100">
+          <h1 style="color: black 'Source Sans Pro', sans-serif">{{QrCodeTitle}}</h1>
+        </div>
+      </div>
+      <div class="qr-code-style" fxLayout="row" fxLayoutAlign="center center">
+        <div fxFlex="70">
+          <ideenherd-qr-scanner #scanner (onScanSuccess)="scanSuccess($event)"></ideenherd-qr-scanner>
+        </div>
+      </div>
+    </div>
+  </dx-scroll-view>
+</div>
+<dx-toast #toast [type]="'error'" [message]="'Ungültiger Code'" [displayTime]="3000" [position]="toastPosition"
+  [width]="'auto'">
+</dx-toast>
+
+<ideenherd-loader *ngIf="appService.scannerProcessLoader"></ideenherd-loader>

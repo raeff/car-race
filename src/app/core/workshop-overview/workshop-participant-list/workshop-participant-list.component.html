@@ -1,0 +1,74 @@
+<div fxLayout="column" [style.filter]="appService.showLoader == true ? 'blur(0.2rem)' : 'blur(0)'" fxFill>
+    <div fxLayout="column">
+        <div class="information-header-detail" fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxFlex="25" fxLayout="column">
+                <div fxLayout="row">
+                    Workshop :
+                </div>
+                <div fxLayout="row">
+                    Datum / Uhrzeit :
+                </div>
+            </div>
+            <div fxFlex="65" fxLayout="column">
+                <div fxLayout="row">
+                    {{appService.workshopDetail.name}}
+                </div>
+                <div fxLayout="row">
+                    {{convertHelper.toDate(appService.workshopDetail.startDate.toString()) }} /
+                    {{convertHelper.toTime(appService.workshopDetail.startDate.toString()) }} -
+                    {{convertHelper.toTime(appService.workshopDetail.endDate.toString()) }} Uhr
+                </div>
+            </div>
+            <div fxFlex="10" fxLayout="column" fxLayoutAlign="center end">
+                <div fxLayout="row">
+                    <img style="height: 30px; width: 40px;" src="assets/images/calendar-green.svg" />
+                </div>
+            </div>
+        </div>
+        <div class="check-in-header" fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxFlex="50">
+                <p> Plätze gesamt: {{appService.workshopDetail.maxParticipant}}
+                    ({{appService.workshopAvailablePlaces}})</p>
+            </div>
+            <div fxFlex="50" fxLayoutAlign="end center">
+                <p> Anmeldungen: {{workShopUsers.length}} | Check-ins:
+                    {{appService.checkedWorkShopUsers.length}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="default-layout-style" fxLayout="column" fxFill>
+        <div>
+            <dx-button class="button-scan-participant" [height]="'85px'" [width]="'100%'"
+                text="Workshop Teilnehmer einchecken" type="default" icon="assets/images/qrcode.svg "
+                (onClick)="getParicipantScanner()">
+            </dx-button>
+        </div>
+        <dx-list class="workshop-participant-list" [dataSource]="workShopUsers" [searchEnabled]="true"
+            [pageLoadMode]="'scrollBottom'" [scrollingEnabled]="true" [hoverStateEnabled]="false"
+            (onItemClick)="getParticipantDetail($event)" [searchExpr]="'user.firstName'" [searchMode]="'contains'"
+            [allowItemDeleting]="false">
+            <div *dxTemplate="let workShopUser of 'item'">
+                <div fxFlex="100" fxLayout="row" class="workshop-participant-item" fxLayoutAlign="space-between center">
+                    <div fxFlex="30">{{workShopUser.user.firstName}} {{workShopUser.user.lastName}}</div>
+                    <div fxFlex="10">{{workShopUser.user.guestId}}</div>
+                    <div fxFlex="50">{{workShopUser.user.company}}</div>
+                    <div fxFlex="10" fxLayout="column" fxLayoutAlign="center end"
+                        *ngIf="workShopUser.checkInDate != null &&  workShopUser.checkOutDate === null">
+                        <img style="height: 30px;width: 30px" src="assets/images/check-green.svg" />
+                    </div>
+                    <div fxFlex="10" fxLayout="column" fxLayoutAlign="center end"
+                        *ngIf="workShopUser.checkOutDate != null || (workShopUser.checkInDate === null && workShopUser.checkOutDate === null)">
+                        <img style="height: 30px;width: 30px" src="assets/images/check-gray.svg" />
+                    </div>
+                </div>
+            </div>
+        </dx-list>
+    </div>
+    <div fxLayout="column">
+        <dx-radio-group class="radio" [id]="'filterGroupParticipant'" [items]="checkedParticipantFilter"
+            (onValueChanged)="changeFilter($event)" [value]="checkedParticipantFilter[2]" layout="horizontal">
+        </dx-radio-group>
+    </div>
+</div>
+
+<ideenherd-loader *ngIf="appService.showLoader"></ideenherd-loader>

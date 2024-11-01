@@ -1,0 +1,19 @@
+<div fxLayout="column" class="default-layout-style" fxFill>
+  <div fxLayout="row">
+    <dx-button class="button-scan" [height]="'100%'" [width]="'100%'" text="Neue Fahrt starten" type="default"
+      icon="assets/images/qrcode.svg " (onClick)="getCarScanner()">
+    </dx-button>
+  </div>
+  <dx-list class="car-overview-list-style" [dataSource]="appService.carList" [searchEnabled]="true"
+    [pageLoadMode]="'scrollBottom'" [scrollingEnabled]="true" [hoverStateEnabled]="false"
+    (onItemClick)="getCarDetail($event)" [searchExpr]="'licensePlate'" [searchMode]="'contains'"
+    [allowItemDeleting]="false">
+    <div *dxTemplate="let data of 'item'">
+      <div fxFlex="100" fxLayout="row" style=" height: 25px; font-weight: bold;" fxLayoutGap="10px">
+        <div fxFlex="40">{{data.name}}</div>
+        <div fxFlex="50">{{data.licensePlate}}</div>
+        <div fxFlex="10"><img style="height: 30px" src="assets/images/start.svg" /></div>
+      </div>
+    </div>
+  </dx-list>
+</div>
